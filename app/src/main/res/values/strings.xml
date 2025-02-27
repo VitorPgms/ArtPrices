@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">ArtPrice</string>
+    <string-array name="opcao_calculo">
+        <item>Multiplicação</item>
+        <item>Porcentagem</item>
+    </string-array>
+</resources>
