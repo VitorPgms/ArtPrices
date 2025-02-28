@@ -1,5 +1,19 @@
 <resources>
     <string name="app_name">ArtPrice</string>
+    <string-array name="peso_resina">
+        <item>25g</item>
+        <item>50g</item>
+        <item>100g</item>
+        <item>145g</item>
+        <item>150g</item>
+        <item>310g</item>
+        <item>335g</item>
+        <item>500g</item>
+        <item>750g</item>
+        <item>1kg</item>
+        <item>1,5kg</item>
+        <item>7,5kg</item>
+    </string-array>
     <string-array name="opcao_calculo">
         <item>Multiplicação</item>
         <item>Porcentagem</item>

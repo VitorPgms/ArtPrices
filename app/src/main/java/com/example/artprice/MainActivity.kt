@@ -22,7 +22,6 @@ class MainActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
         val spinner = binding.spiTipo
 
         //Criando Adapter para o Spinner
@@ -35,9 +34,7 @@ class MainActivity : AppCompatActivity() {
             val resina = binding.editResina.text.toString()
             val value = binding.editValor.text.toString()
             val pieceWeight = binding.editPeso.text.toString()
-            val accessory = binding.editAcessorio.text.toString()
             val profit = binding.editLucro.text.toString()
-            val fees = binding.editTaxa.text.toString()
 
             if(resina.isEmpty() && value.isEmpty()){
                 Toast.makeText(this, "Digite o peso total da resina e o valor", Toast.LENGTH_SHORT).show()
@@ -61,26 +58,23 @@ class MainActivity : AppCompatActivity() {
         val profitId = binding.editLucro
         val feesId = binding.editTaxa
 
-        val resina = Integer.parseInt(resinaId.text.toString())
-        val value = Integer.parseInt(valueId.text.toString())
-        val weight = Integer.parseInt(weightId.text.toString())
-        val accessory = Integer.parseInt(accessoryId.text.toString())
-        val profit = Integer.parseInt(profitId.text.toString())
-        val fees = Integer.parseInt(feesId.text.toString())
+        val resina = resinaId.text.toString().toDoubleOrNull() ?: 0.0
+        val value = valueId.text.toString().toDoubleOrNull() ?: 1.0
+        val weight = weightId.text.toString().toDoubleOrNull() ?: 0.0
+        val accessory = accessoryId.text.toString().toDoubleOrNull() ?: 0.0
+        val profit = profitId.text.toString().toDoubleOrNull() ?: 0.0
+        val fees = feesId.text.toString().toDoubleOrNull() ?: 0.0
 
-        val pricePiece = (resina / value) * weight
+        val pricePiece = (value / resina) * weight
         val costPiece = pricePiece + accessory
 
-        var spinnerResult = when(optionSelect) {
+        val spinnerResult = when(optionSelect) {
             "Multiplicação" -> costPiece * profit
             "Porcentagem" -> costPiece *(1 + profit / 100)
             else -> 0
         }
 
-        val resultado = binding.txtResultado
-
-        resultado.toString()
-        resultado.setText("O valor da peça é de: R$ %.2f".format(spinnerResult))
+        binding.txtResultado.text = "O valor da peça é de: R$ %.2f".format(spinnerResult)
     }
 
 }
