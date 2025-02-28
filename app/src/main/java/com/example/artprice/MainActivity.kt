@@ -45,9 +45,9 @@ class MainActivity : AppCompatActivity() {
             val profit = binding.editLucro.text.toString()
 
             if(resina.isEmpty() && value.isEmpty()){
-                Toast.makeText(this, "Digite o peso total da resina e o valor", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, resources.getString(R.string.erro1), Toast.LENGTH_SHORT).show()
             } else if (pieceWeight.isEmpty() && profit.isEmpty()){
-                Toast.makeText(this, "Digite o peso da peça, o tipo de lucro e o lucro", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, resources.getString(R.string.erro2), Toast.LENGTH_SHORT).show()
             } else {
                 calculationPrice()
             }
@@ -89,7 +89,7 @@ class MainActivity : AppCompatActivity() {
             else -> 0
         }
 
-        binding.txtResultado.text = "O valor da peça é de: R$ %.2f".format(spinnerResult)
+        binding.txtResultado.text = resources.getString(R.string.resultado).format(spinnerResult)
     }
 
 }

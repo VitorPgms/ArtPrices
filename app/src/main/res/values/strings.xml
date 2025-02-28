@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">ArtPrice</string>
+    <string name="erro1">Digite o peso total da resina e o valor</string>
+    <string name="erro2">Digite o peso da peça, o tipo de lucro e o lucro</string>
+    <string name="resultado">"O valor da peça é de: R$ %.2f"</string>
     <string-array name="peso_resina">
         <item>25g</item>
         <item>50g</item>
