@@ -1,4 +1,10 @@
 <resources>
+    <!--Screen Home-->
+    <string name="text_home">Transforme custos em \n lucro com o ArtPrice!</string>
+    <string name="text_sub_txt">Precifique seus produtos de forma simples e eficiente. Faça o seu lucro crescer!</string>
+    <string name="btn_start">Iniciar</string>
+
+    <!--Screen Main-->
     <string name="app_name">ArtPrice</string>
     <string name="erro1">Digite o peso total da resina e o valor</string>
     <string name="erro2">Digite o peso da peça, o tipo de lucro e o lucro</string>
@@ -21,4 +27,5 @@
         <item>Multiplicação</item>
         <item>Porcentagem</item>
     </string-array>
+
 </resources>
