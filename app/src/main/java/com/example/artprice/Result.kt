@@ -27,16 +27,15 @@ class Result : AppCompatActivity() {
         val profitResult = binding.txtValorMaodeObra
         val resultResult = binding.txtValorTotalVenda
 
-        val pricePiece = intent.getDoubleExtra("PRICE_PIECE", 0.0)
-        val accessory = intent.getDoubleExtra("ACCESSORY", 0.0)
-        val spinnerResultValue = intent.getDoubleExtra("SPINNER_RESULT", 0.0)
-        val profit = intent.getDoubleExtra("PROFIT", 0.0)
+        val pricePiece = intent.getDoubleExtra(MainActivity.EXTRA_PRICE_PIECE, 0.0)
+        val accessory = intent.getDoubleExtra(MainActivity.EXTRA_ACCESSORY, 0.0)
+        val spinnerResultValue = intent.getDoubleExtra(MainActivity.EXTRA_SPINNER_RESULT, 0.0)
+        val profit = intent.getDoubleExtra(MainActivity.EXTRA_PROFIT, 0.0)
 
-        pricePieceResult.text = "R$$pricePiece%.2f"
-        accessoryResult.text = "R$$accessory"
-        profitResult.text = "R$$profit"
-        resultResult.text = "R$$spinnerResultValue"
-
+        pricePieceResult.text = String.format("R$ %.2f", pricePiece)
+        accessoryResult.text = String.format("R$ %.2f", accessory)
+        profitResult.text = "$profit"
+        resultResult.text = String.format("R$ %.2f", spinnerResultValue)
 
     }
 }

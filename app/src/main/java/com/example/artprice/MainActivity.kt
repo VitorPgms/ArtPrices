@@ -11,9 +11,17 @@ import androidx.core.view.WindowInsetsCompat
 import com.example.artprice.Result
 import com.example.artprice.databinding.ActivityMainBinding
 
-private lateinit var binding: ActivityMainBinding
-
 class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+
+    companion object {
+        const val EXTRA_PRICE_PIECE = "PRICE_PIECE"
+        const val EXTRA_ACCESSORY = "ACCESSORY"
+        const val EXTRA_SPINNER_RESULT = "SPINNER_RESULT"
+        const val EXTRA_PROFIT = "PROFIT"
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -46,9 +54,9 @@ class MainActivity : AppCompatActivity() {
             val pieceWeight = binding.editPeso.text.toString()
             val profit = binding.editLucro.text.toString()
 
-            if(resina.isEmpty() && value.isEmpty()){
+            if (resina.isEmpty() || value.isEmpty() || pieceWeight.isEmpty() || profit.isEmpty()) {
                 Toast.makeText(this, resources.getString(R.string.erro1), Toast.LENGTH_SHORT).show()
-            } else if (pieceWeight.isEmpty() && profit.isEmpty()){
+            } else if (value.toDoubleOrNull() == null || pieceWeight.toDoubleOrNull() == null || profit.toDoubleOrNull() == null) {
                 Toast.makeText(this, resources.getString(R.string.erro2), Toast.LENGTH_SHORT).show()
             } else {
                 calculationPrice()
@@ -92,10 +100,10 @@ class MainActivity : AppCompatActivity() {
         }
 
         val intent = Intent(this, Result::class.java).apply {
-            putExtra("PRICE_PIECE", pricePiece)
-            putExtra("ACCESSORY", accessory)
-            putExtra("SPINNER_RESULT", spinnerResult)
-            putExtra("PROFIT", profit)
+            putExtra(EXTRA_PRICE_PIECE, pricePiece)
+            putExtra(EXTRA_ACCESSORY, accessory)
+            putExtra(EXTRA_SPINNER_RESULT, spinnerResult)
+            putExtra(EXTRA_PROFIT, profit)
         }
         startActivity(intent)
     }
