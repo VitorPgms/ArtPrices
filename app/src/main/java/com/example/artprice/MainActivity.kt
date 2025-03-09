@@ -1,5 +1,6 @@
 package com.example.artprice
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.Toast
@@ -7,6 +8,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.artprice.Result
 import com.example.artprice.databinding.ActivityMainBinding
 
 private lateinit var binding: ActivityMainBinding
@@ -89,7 +91,13 @@ class MainActivity : AppCompatActivity() {
             else -> 0
         }
 
-        binding.txtResultado.text = resources.getString(R.string.resultado).format(spinnerResult)
+        val intent = Intent(this, Result::class.java).apply {
+            putExtra("PRICE_PIECE", pricePiece)
+            putExtra("ACCESSORY", accessory)
+            putExtra("SPINNER_RESULT", spinnerResult)
+            putExtra("PROFIT", profit)
+        }
+        startActivity(intent)
     }
 
 }

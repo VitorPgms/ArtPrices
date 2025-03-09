@@ -26,17 +26,19 @@
         android:textStyle="bold"
         android:textColor="@color/color_lyrics"
         android:lineSpacingExtra="8dp"
-        android:gravity="center"/>
+        android:gravity="center"
+        android:layout_marginBottom="15dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/text_sub_txt"
-        android:textSize="18sp"
+        android:textSize="15sp"
         android:textColor="@color/color_lyrics"
         android:lineSpacingExtra="8dp"
         android:letterSpacing="0.05"
         android:padding="20dp"
+        android:layout_marginBottom="15dp"
         android:gravity="center"/>
     
     <Button

@@ -8,7 +8,6 @@
     <string name="app_name">ArtPrice</string>
     <string name="erro1">Digite o peso total da resina e o valor</string>
     <string name="erro2">Digite o peso da peça, o tipo de lucro e o lucro</string>
-    <string name="resultado">"O valor da peça é de: R$ %.2f"</string>
     <string-array name="peso_resina">
         <item>25g</item>
         <item>50g</item>
@@ -27,5 +26,12 @@
         <item>Multiplicação</item>
         <item>Porcentagem</item>
     </string-array>
+
+    <!--Screen Result-->
+    <string name="text_valor_peca">Valor da Peça</string>
+    <string name="text_acessorio">Acessorio</string>
+    <string name="text_mao_obra">Mão de Obra</string>
+    <string name="text_taxa">Taxa</string>
+    <string name="text_total_venda">Valor Total de Venda</string>
 
 </resources>
