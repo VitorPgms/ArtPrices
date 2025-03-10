@@ -67,42 +67,52 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    private fun calculationPrice(){
-        val valueId = binding.editValor
-        val weightId = binding.editPeso
-        val accessoryId = binding.editAcessorio
+    private fun calculateResinWeight(spiPesoResina: String): Double {
+        return when {
+            spiPesoResina.contains("kg") -> spiPesoResina.replace("kg", "").trim().replace(",", ".").toDoubleOrNull()?.times(1000) ?: 0.0
+            spiPesoResina.contains("g") -> spiPesoResina.replace("g", "").trim().toDoubleOrNull() ?: 0.0
+            else -> 0.0
+        }
+    }
+
+    private fun calculatePiecePrice(value: Double, pesoResina: Double, weight: Double): Double {
+        return if (pesoResina > 0) {
+            (value / pesoResina) * weight
+        } else {
+            Toast.makeText(this, "Peso da resina inválido", Toast.LENGTH_SHORT).show()
+            0.0
+        }
+    }
+
+    private fun calculateTotalCost(pricePiece: Double, accessory: Double): Double {
+        return pricePiece + accessory
+    }
+
+    private fun calculateFinalPrice(costPiece: Double, profit: Double, optionSelect: String): Double {
+        return when (optionSelect) {
+            "Multiplicação" -> costPiece * profit
+            "Porcentagem" -> costPiece * (1 + profit / 100)
+            else -> 0.0
+        }
+    }
+
+    private fun calculationPrice() {
+        val value = binding.editValor.text.toString().toDoubleOrNull() ?: 0.0
+        val weight = binding.editPeso.text.toString().toDoubleOrNull() ?: 0.0
+        val accessory = binding.editAcessorio.text.toString().toDoubleOrNull() ?: 0.0
+        val profit = binding.editLucro.text.toString().toDoubleOrNull() ?: 0.0
         val optionSelect = binding.spiTipo.selectedItem.toString()
         val spiPesoResina = binding.spiResina.selectedItem.toString()
-        val profitId = binding.editLucro
-        val feesId = binding.editTaxa
 
-        val pesoResina = when {
-            spiPesoResina.contains("kg") -> spiPesoResina.replace("kg", "").trim().replace(",", ".").toDoubleOrNull()?.times(1000)
-            spiPesoResina.contains("g") -> spiPesoResina.replace("g", "").trim().toDoubleOrNull()
-            else -> 0.0
-        } ?: 0.0
-
-
-        val resinaID = binding.spiResina.selectedItem.toString().toDoubleOrNull()
-        val value = valueId.text.toString().toDoubleOrNull() ?: 1.0
-        val weight = weightId.text.toString().toDoubleOrNull() ?: 0.0
-        val accessory = accessoryId.text.toString().toDoubleOrNull() ?: 0.0
-        val profit = profitId.text.toString().toDoubleOrNull() ?: 0.0
-        val fees = feesId.text.toString().toDoubleOrNull() ?: 0.0
-
-        val pricePiece = (value / pesoResina) * weight
-        val costPiece = pricePiece + accessory
-
-        val spinnerResult = when(optionSelect) {
-            "Multiplicação" -> costPiece * profit
-            "Porcentagem" -> costPiece *(1 + profit / 100)
-            else -> 0
-        }
+        val pesoResina = calculateResinWeight(spiPesoResina)
+        val pricePiece = calculatePiecePrice(value, pesoResina, weight)
+        val costPiece = calculateTotalCost(pricePiece, accessory)
+        val finalPrice = calculateFinalPrice(costPiece, profit, optionSelect)
 
         val intent = Intent(this, Result::class.java).apply {
             putExtra(EXTRA_PRICE_PIECE, pricePiece)
             putExtra(EXTRA_ACCESSORY, accessory)
-            putExtra(EXTRA_SPINNER_RESULT, spinnerResult)
+            putExtra(EXTRA_SPINNER_RESULT, finalPrice)
             putExtra(EXTRA_PROFIT, profit)
         }
         startActivity(intent)

@@ -1,5 +1,6 @@
 package com.example.artprice
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -37,5 +38,11 @@ class Result : AppCompatActivity() {
         profitResult.text = "$profit"
         resultResult.text = String.format("R$ %.2f", spinnerResultValue)
 
+        binding.btnNovoProduto.setOnClickListener {
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        }
+
     }
+
 }
