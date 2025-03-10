@@ -9,6 +9,7 @@
     <string name="erro1">Digite o peso total da resina e o valor</string>
     <string name="erro2">Digite o peso da peça, o tipo de lucro e o lucro</string>
     <string-array name="peso_resina">
+        <item>Escolha o peso da total da resina</item>
         <item>25g</item>
         <item>50g</item>
         <item>100g</item>
